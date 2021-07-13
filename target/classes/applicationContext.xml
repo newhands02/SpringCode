@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+<!--    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">-->
+<!--        &lt;!&ndash; 驱动 &ndash;&gt;-->
+<!--        <property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+<!--        &lt;!&ndash; url &ndash;&gt;-->
+<!--        <property name="url" value="jdbc:mysql://10.2.29.121:3306/npeis" />-->
+<!--        &lt;!&ndash; 用户名 &ndash;&gt;-->
+<!--        <property name="username" value="root" />-->
+<!--        &lt;!&ndash; 密码 &ndash;&gt;-->
+<!--        <property name="password" value="123456" />-->
+<!--    </bean>-->
+    <!-- mapper 配置 -->
+    <!-- 让 spring 管理 sqlsessionfactory 使用 mybatis 和 spring 整合包中的 -->
+<!--    <bean id="sqlSessionFactory"-->
+<!--          class="org.mybatis.spring.SqlSessionFactoryBean">-->
+<!--        &lt;!&ndash; 数据库连接池 &ndash;&gt;-->
+<!--        <property name="dataSource" ref="dataSource" />-->
+<!--        <property name="typeAliasesPackage"-->
+<!--                  value="com.xyj.entity"></property>-->
+<!--    </bean>-->
+
+    <!-- mapper 扫描器 ：用来产生代理对象-->
+<!--    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+<!--        <property name="basePackage" value="com.xyj.Dao"></property>-->
+<!--    </bean>-->
+    <!--Service扫描器器-->
+<!--    <context:component-scan base-package="com.xyj.Service"/>-->
+    <bean id="user" class="com.xyj.entity.User">
+        <property name="name" value="xyj"/>
+    </bean>
+
+</beans>
