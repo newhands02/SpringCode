@@ -44,5 +44,10 @@
     <bean id="user" class="com.xyj.entity.User">
         <property name="name" value="xyj"/>
     </bean>
-
+    <bean id="a" class="com.xyj.circle.A">
+        <property name="b" ref="b"/>
+    </bean>
+    <bean id="b" class="com.xyj.circle.B">
+        <property name="a" ref="a"/>
+    </bean>
 </beans>

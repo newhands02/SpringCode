@@ -1,6 +1,6 @@
 package com.xyj.circle;
 
-public class A {
+public class A{
     private B b;
 
     public B getB() {
