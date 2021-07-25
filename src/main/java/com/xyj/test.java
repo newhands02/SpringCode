@@ -13,6 +13,16 @@ public class test {
 //        System.out.println(System.getProperty("sun.boot.class.path"));
 //        System.out.println(System.getProperty("java.ext.dirs"));
 //        System.out.println(System.getProperty("java.class.path"));
-        System.out.println(System.getProperty("java.security.manager"));
+//        System.out.println(System.getProperty("java.security.manager"));
+
+        String b=new String("11");
+        String a="11";
+        String c = b.intern();
+        System.out.println(a==b);
+        System.out.println(a==c);
+        String s1=new String("ab")+new String("c");
+        s1.intern();
+        String s2="abc";
+        System.out.println(s1==s2);
     }
 }
