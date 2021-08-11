@@ -5,3 +5,13 @@
 ![image-20210725171117620](C:\Users\661572\AppData\Roaming\Typora\typora-user-images\image-20210725171117620.png)
 
 -XX:MaxTenuringThreshold：设置新生代经过多少次GC之后会被移入老年代
+
+-XX:+HeapDumpOnOutOfMemoryError:
+
+-XX:MaxDirectMemorySize:调整直接内存的大小
+
+-XX:+AlwaysTenure:对象在第一次minor GC后直接进入老年代
+
+-XX:+PrintReferenceGC:
+
+-XX:+PrintGCApplicationStoppedTime:

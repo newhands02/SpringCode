@@ -1,0 +1,18 @@
+1.Refresh方法
+
+```java
+//重写了configurableApplicationContext的refresh方法@Overridepublic void refresh() throws BeansException, IllegalStateException { //this.startupShutdownMonitor是一个普通的new Obejct synchronized (this.startupShutdownMonitor) { //标记spring.context.refresh方法开始 StartupStep contextRefresh = this.applicationStartup.start("spring.context.refresh"); // Prepare this context for refreshing. //设active为true，标识refresh开始 prepareRefresh(); // Tell the subclass to refresh the internal bean factory. ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory(); // Prepare the bean factory for use in this context. prepareBeanFactory(beanFactory); try { // Allows post-processing of the bean factory in context subclasses. postProcessBeanFactory(beanFactory); StartupStep beanPostProcess = this.applicationStartup.start("spring.context.beans.post-process"); // Invoke factory processors registered as beans in the context.invokeBeanFactoryPostProcessors(beanFactory); // Register bean processors that intercept bean creation. registerBeanPostProcessors(beanFactory); beanPostProcess.end(); // Initialize message source for this context. initMessageSource(); // Initialize event multicaster for this context. initApplicationEventMulticaster(); // Initialize other special beans in specific context subclasses. onRefresh(); // Check for listener beans and register them. registerListeners(); // Instantiate all remaining (non-lazy-init) singletons. finishBeanFactoryInitialization(beanFactory); // Last step: publish corresponding event. finishRefresh(); } catch (BeansException ex) { if (logger.isWarnEnabled()) { logger.warn("Exception encountered during context initialization - " + "cancelling refresh attempt: " + ex); } // Destroy already created singletons to avoid dangling resources. destroyBeans(); // Reset 'active' flag. cancelRefresh(ex); // Propagate exception to caller. throw ex; } finally { // Reset common introspection caches in Spring's core, since we // might not ever need metadata for singleton beans anymore... resetCommonCaches(); contextRefresh.end(); } } }
+```
+
+prepareRefresh()方法
+
+```java
+/** * Prepare this context for refreshing, setting its startup date and * active flag as well as performing any initialization of property sources. 为context的刷新做准备，设置开始时间、活跃标识以及一些属性源的初始化 */ protected void prepareRefresh() { // Switch to active. this.startupDate = System.currentTimeMillis(); this.closed.set(false); this.active.set(true); if (logger.isDebugEnabled()) { if (logger.isTraceEnabled()) { logger.trace("Refreshing " + this); } else { logger.debug("Refreshing " + getDisplayName()); } }
+```
+
+obtainFreshBeanFactory（）方法
+
+```java
+/** * Tell the subclass to refresh the internal bean factory. * */ protected ConfigurableListableBeanFactory obtainFreshBeanFactory() { refreshBeanFactory(); return getBeanFactory(); }/** * Subclasses must implement this method to perform the actual configuration load.The method is invoked by {@link #refresh()} before any other initialization work.A subclass will either create a new bean factory and hold a reference to it,or return a single BeanFactory instance that it holds. In the latter case, it will usually throw an IllegalStateException if refreshing the context more than once.*子类必须实现这个方法去执行实际的定义信息加载。这个方法会在所有初始化工作开始之前执行**/ protected abstract void refreshBeanFactory() throws BeansException, IllegalStateException;/** * Subclasses must return their internal bean factory here. They should implement the lookup efficiently, so that it can be called repeatedly without a performance penalty. *子类必须返回他们的内部bean工厂。子类应该实现高效的查找，以便方法可以被重复调用而没有损耗 * 
+```
+
